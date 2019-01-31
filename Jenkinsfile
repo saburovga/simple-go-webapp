@@ -25,7 +25,6 @@ node {
     stage ("Stop any running container") {
         def DockerStop="\"if [ \"\$(ssh -o StrictHostKeyChecking=no ec2-user@54.175.169.242 \"docker ps -q|wc -l\")\" -gt 0 ]; then docker stop \$(ssh -o StrictHostKeyChecking=no ec2-user@54.175.169.242 \"docker ps -q\"); fi\""
         sshagent(['e68d8dc5-e4ee-41cb-a226-d6428db6a610']) {
-            def DockerPS=""
             sh "ssh -o StrictHostKeyChecking=no ec2-user@54.175.169.242 ${DockerStop}"
         }        
     }
